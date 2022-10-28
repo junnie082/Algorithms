@@ -24,6 +24,8 @@ void insertNode(Node graph[], int head, int to) {
 		}
 		point -> next = newNode; 
 	} 
+
+	//printf("head: %d to: %d\n", head, graph[head].next -> number); 
 }
 
 
@@ -63,7 +65,7 @@ int DFSsearch(Node *graph, int *stack, int search) {
 
 	// 이 코드를 추가하면 또 stack[1] = 0 이라고 뜨는데...
 	// 도대체 뭐지?? 왜 이런 일들이 발생하는 걸까.
-	graph[6].next = NULL;
+	// graph[6].next = NULL;
 
 	// if (graph[6].next -> next == NULL) {
 	// 	printf("NULLLLLLLL!\n"); 
@@ -125,15 +127,22 @@ int main()
 		graph[i].number = i; 
 	}
 
-	insertNode(graph, 1, 2);
-	insertNode(graph, 1, 7); 
-	insertNode(graph, 1, 10); 
-	insertNode(graph, 2, 3);
-	insertNode(graph, 2, 5);
-	insertNode(graph, 3, 4); 
-	insertNode(graph, 5, 6); 
-	insertNode(graph, 7, 8); 
-	insertNode(graph, 10, 11);
+	// insertNode(graph, 1, 2);
+	// insertNode(graph, 1, 7); 
+	// insertNode(graph, 1, 10); 
+	// insertNode(graph, 2, 3);
+	// insertNode(graph, 2, 5);
+	// insertNode(graph, 3, 4); 
+	// insertNode(graph, 5, 6); 
+	// insertNode(graph, 7, 8); 
+	// insertNode(graph, 10, 11);
+	insertNode(graph, 1, 5); 
+	insertNode(graph, 1, 4);
+	insertNode(graph, 4, 7);
+	insertNode(graph, 5, 6);
+	insertNode(graph, 6, 8);
+	insertNode(graph, 6, 9);
+
 
 	// if (graph[6].next  == NULL) {
 	// 	printf("NULLLLLLLL!\n"); 
@@ -152,7 +161,7 @@ int main()
 	// 	printf("NULL!\n");
 	// }
 
-	result = DFSsearch(graph, stack, 5); 
+	result = DFSsearch(graph, stack, 10); 
 	printf("%d\n", result);
 
 	//free(graph); 
