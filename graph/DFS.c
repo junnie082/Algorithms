@@ -15,6 +15,7 @@ void insertNode(Node graph[], int head, int to) {
 	newNode -> number = to; 
 	newNode -> next = NULL;
 
+	
 	if (graph[head].next == NULL) {
 		graph[head].next = newNode; 
 	} else {
@@ -24,7 +25,7 @@ void insertNode(Node graph[], int head, int to) {
 		}
 		point -> next = newNode; 
 	} 
-
+	
 	//printf("head: %d to: %d\n", head, graph[head].next -> number); 
 }
 
@@ -55,21 +56,22 @@ void deleteNode(Node *graph, int head) {
 
 }
 
-int DFSsearch(Node *graph, int *stack, int search) {
 
+int DFSsearch(Node *graph, int *stack, int search) {
+	
 	int size = 1, val = 1, head = 1;
 	stack[0] = -1; 
 	stack[size] = graph[head].number;
 
 
-
+	// for (int i = 1; i <= 11; i++) {
+	// 	if (graph[i].next == NULL) {
+	// 		printf("%d NULL!!!\n", i); 
+	// 	}
+	// }
 	// 이 코드를 추가하면 또 stack[1] = 0 이라고 뜨는데...
 	// 도대체 뭐지?? 왜 이런 일들이 발생하는 걸까.
 	// graph[6].next = NULL;
-
-	// if (graph[6].next -> next == NULL) {
-	// 	printf("NULLLLLLLL!\n"); 
-	// }
 
 
 	// 왜 graph[6]에 NULL 이 연결되어 있지 않을까? 
@@ -82,7 +84,7 @@ int DFSsearch(Node *graph, int *stack, int search) {
 		//어!!! 처음부터 NULL 이 아니라고 뜨는데?
 		//함수에서는 분명이 NULL 이라고 했잖아...
 		printf("head: %d ", head); 
-		// 
+		
 		if (graph[head].next == NULL) {
 			printf("head: %d, NULL!!\n", head); 
 		}
@@ -118,42 +120,46 @@ int DFSsearch(Node *graph, int *stack, int search) {
 int main()
 {
 	int result; 
-	//Node *graph = malloc(sizeof(Node *) * 12); 
-	Node graph[13]; 
-	int *stack = malloc(sizeof(int *) * 11); 
+	Node *graph = malloc(sizeof(Node) * 12); 
+	//Node graph[13]; 
+	int *stack = malloc(sizeof(int) * 11); 
+
 
 	for (int i = 1; i <= 11; i++) {
 		graph[i].next = NULL; 
 		graph[i].number = i; 
 	}
 
-	// insertNode(graph, 1, 2);
-	// insertNode(graph, 1, 7); 
-	// insertNode(graph, 1, 10); 
-	// insertNode(graph, 2, 3);
-	// insertNode(graph, 2, 5);
-	// insertNode(graph, 3, 4); 
-	// insertNode(graph, 5, 6); 
-	// insertNode(graph, 7, 8); 
-	// insertNode(graph, 10, 11);
-	insertNode(graph, 1, 5); 
-	insertNode(graph, 1, 4);
-	insertNode(graph, 4, 7);
-	insertNode(graph, 5, 6);
-	insertNode(graph, 6, 8);
-	insertNode(graph, 6, 9);
-
-
-	// if (graph[6].next  == NULL) {
-	// 	printf("NULLLLLLLL!\n"); 
+	
+	insertNode(graph, 1, 2);
+	insertNode(graph, 1, 7); 
+	insertNode(graph, 1, 10); 
+	insertNode(graph, 2, 3);
+	insertNode(graph, 2, 5);
+	insertNode(graph, 3, 4); 
+	insertNode(graph, 5, 6); 
+	insertNode(graph, 7, 8); 
+	insertNode(graph, 10, 11);
+	// insertNode(graph, 1, 5); 
+	// insertNode(graph, 1, 4);
+	// insertNode(graph, 4, 7);
+	// insertNode(graph, 5, 11); 
+	// insertNode(graph, 5, 6);
+	// insertNode(graph, 6, 8);
+	// insertNode(graph, 6, 9);
+	// for (int i = 1; i <= 11; i++) {
+	// 	if (graph[i].next == NULL) {
+	// 		printf("%d NULL!!!\n", i); 
+	// 	}
 	// }
+	
 
 	//구조체 배열에 NULL 이 연결 되어 있는지를 확인. 
 	// for (int i = 1; i <= 11; i++) {
 	// 	if (graph[i].next == NULL) {
 	// 		printf("%d\n", i); 
 	// 	}
-	// }
+	//}
 
 	//여기까지는... graph[6]에 NULL 노드가 들어 있는데,
 	//왜 DFSsearch 함수를 돌리면 NULL 이 아니라고 뜰까? 
@@ -161,10 +167,15 @@ int main()
 	// 	printf("NULL!\n");
 	// }
 
-	result = DFSsearch(graph, stack, 10); 
-	printf("%d\n", result);
+	result = DFSsearch(graph, stack, 8); 
 
-	//free(graph); 
+	if (result) {
+		printf("Exists!!\n");
+	} else {
+		printf("Doesn't exist!!\n"); 
+	}
+
+	free(graph); 
 	free(stack); 
 
 }
