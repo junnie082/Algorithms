@@ -1,4 +1,3 @@
-
 def binary_search(numbers, target):
     first = 0
     last = len(numbers) - 1
