@@ -8,8 +8,9 @@ typedef struct _Node {
 } Node; 
 
 void insertNode(int graph[][12], int from, int to) {
-	graph[from][to] = 1; 
-	graph[to][from] = 0; 
+	if (graph[to][from] == 0) {
+		graph[from][to] = 1; 
+	}
 }
 
 void insertQueue(Node *end, int num) {
@@ -77,6 +78,7 @@ int main()
 	insertNode(graph, 1, 2); 
 	insertNode(graph, 1, 7); 
 	insertNode(graph, 1, 10); 
+	insertNode(graph, 2, 1); 
 	insertNode(graph, 2, 3);
 	insertNode(graph, 2, 5);
 	insertNode(graph, 3, 4);
@@ -86,17 +88,15 @@ int main()
 	insertNode(graph, 10, 11);
 
 
-	// for (int i = 1; i <= 11; i++) {
-	// 	for (int j = 1; j <= 11; j++) {
-	// 		printf("%d ", graph[i][j]);
-	// 	}
-	// 	printf("\n"); 
-	// }
-
 	if (BFSsearch(graph, front, end, 20)) {
 		printf("Exists!!\n"); 
 	} else {
 		printf("Doesn't exist!!\n"); 
+	}
+
+
+	while (front -> next != end) {
+		deleteNode(front); 
 	}
 
 	free(front);
